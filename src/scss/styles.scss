@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700,900');
+
+$defaultFont: 'Roboto', sans-serif;
+$defaultColor: #313131;
+
+body {
+    font-family: $defaultFont;
+    color: $defaultColor;
+    margin: 30px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+}
