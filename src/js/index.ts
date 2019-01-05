@@ -109,6 +109,26 @@ async function GetOne(): Promise<any>
     });
 }
 
+// Unfinished: Missing API Method
+async function PostOne(): Promise<any>
+{
+    await axios.post(baseURI)
+    .then(function()
+    {
+
+    });
+}
+
+// Unfinished: Missing API Method
+async function PutOne(): Promise<any>
+{
+    await axios.put(baseURI + "/" + inputId.value)
+    .then(function()
+    {
+
+    });
+}
+
 async function DeleteOne(): Promise<any>
 {
     await axios.delete(baseURI + "/" + inputId.value)
