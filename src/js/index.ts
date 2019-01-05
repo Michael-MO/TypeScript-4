@@ -63,6 +63,7 @@ function HTMLTableDataRow(obj?: Meassurement): HTMLTableRowElement
     return row;
 }
 
+// HTTP Method: GET (Multiple)
 async function GetAll(): Promise<any>
 {
     await axios.get(baseURI)
@@ -81,6 +82,7 @@ async function GetAll(): Promise<any>
     });
 }
 
+// HTTP Method: GET
 async function GetOne(): Promise<any>
 {
     await axios.get(baseURI + "/" + inputId.value)
@@ -105,6 +107,7 @@ async function GetOne(): Promise<any>
 }
 
 // Unfinished: Missing API Method
+// HTTP Method: POST
 async function PostOne(): Promise<any>
 {
     await axios.post(baseURI)
@@ -115,6 +118,7 @@ async function PostOne(): Promise<any>
 }
 
 // Unfinished: Missing API Method
+// HTTP Method: PUT
 async function PutOne(): Promise<any>
 {
     await axios.put(baseURI + "/" + inputId.value)
@@ -124,6 +128,7 @@ async function PutOne(): Promise<any>
     });
 }
 
+// HTTP Method: DELETE
 async function DeleteOne(): Promise<any>
 {
     await axios.delete(baseURI + "/" + inputId.value)
