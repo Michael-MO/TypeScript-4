@@ -32,23 +32,33 @@ function ClearTable(): void
     tableBody.innerText = "";
 }
 
-function HTMLTableDataRow(obj: Meassurement): HTMLTableRowElement
+function HTMLTableDataRow(obj?: Meassurement): HTMLTableRowElement
 {
     let row = document.createElement("tr") as HTMLTableRowElement;
-    let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-    cell.innerText = obj.id.toString();
 
-    let cell2 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-    cell2.innerText = obj.pressure.toString() + " bar";
+    if(obj != null)
+    {
+        let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        cell.innerText = obj.id.toString();
 
-    let cell3 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-    cell3.innerText = obj.humidity.toString() + "%";
+        let cell2 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        cell2.innerText = obj.pressure.toString() + " bar";
 
-    let cell4 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-    cell4.innerText = obj.temperature.toString() + "°C";
+        let cell3 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        cell3.innerText = obj.humidity.toString() + "%";
 
-    let cell5 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-    cell5.innerText = Dates.formatDate(obj.timeOfEntry);
+        let cell4 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        cell4.innerText = obj.temperature.toString() + "°C";
+
+        let cell5 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        cell5.innerText = Dates.formatDate(obj.timeOfEntry);
+    }
+    else
+    {
+        let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        cell.setAttribute("colspan", "5");
+        cell.innerText = "No records found.";
+    }
 
     return row;
 }
@@ -67,12 +77,7 @@ async function GetAll(): Promise<any>
     })
     .catch(function()
     {
-        let row = document.createElement("tr") as HTMLTableRowElement;
-        let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-        cell.setAttribute("colspan", "5");
-        cell.innerText = "No records found.";
-
-        tableBody.appendChild(row);
+        tableBody.appendChild(HTMLTableDataRow());
     });
 }
 
@@ -90,22 +95,12 @@ async function GetOne(): Promise<any>
         }
         else
         {
-            let row = document.createElement("tr") as HTMLTableRowElement;
-            let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-            cell.setAttribute("colspan", "5");
-            cell.innerText = "No record(s) found.";
-
-            tableBody.appendChild(row);
+            tableBody.appendChild(HTMLTableDataRow());
         }
     })
     .catch(function()
-    {
-        let row = document.createElement("tr") as HTMLTableRowElement;
-        let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-        cell.setAttribute("colspan", "5");
-        cell.innerText = "No record of Id = '" + inputId.value + "' found.";
-
-        tableBody.appendChild(row);
+    {        
+        tableBody.appendChild(HTMLTableDataRow());
     });
 }
 
@@ -115,7 +110,7 @@ async function PostOne(): Promise<any>
     await axios.post(baseURI)
     .then(function()
     {
-
+        GetAll();
     });
 }
 
