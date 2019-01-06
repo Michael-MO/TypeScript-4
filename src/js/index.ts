@@ -11,7 +11,7 @@ interface Meassurement
     timeOfEntry: Date
 }
 
-let baseURI: string = "https://mmo-restservicetest4.azurewebsites.net/api/meassurements";
+const baseURI: string = "https://mmo-restservicetest4.azurewebsites.net/api/meassurements";
 
 let inputId = document.getElementById("InputId") as HTMLInputElement;
 inputId.addEventListener("submit", GetOne);
@@ -26,7 +26,19 @@ btnGetOne.addEventListener("click", GetOne);
 let btnPostOne = document.getElementById("PostOne") as HTMLButtonElement;
 btnPostOne.addEventListener("click", PostOne);
 
+let btnPutOne = document.getElementById("PutOne") as HTMLButtonElement;
+btnPutOne.addEventListener("click", PutOne);
+
 let tableBody = document.getElementById("tBodyContent") as HTMLTableElement;
+
+function NumFormat(num: number, decimals: number): string
+{
+    return (num
+        .toFixed(decimals) // Set the number of desired decimals
+        .replace('.', ',')  // Replace all points with commas
+        .replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.') // Then put a point for every thousand in the number
+    )
+}
 
 function ClearTable(): void
 {
@@ -44,13 +56,13 @@ function HTMLTableDataRow(obj?: Meassurement): HTMLTableRowElement
         cell.innerText = obj.id.toString();
 
         let cell2 = row.insertCell(-1) as HTMLTableCellElement;
-        cell2.innerText = obj.pressure.toString() + " bar";
+        cell2.innerText = NumFormat(obj.pressure, 2) + " bar";
 
         let cell3 = row.insertCell(-1) as HTMLTableCellElement;
-        cell3.innerText = obj.humidity.toString() + "%";
+        cell3.innerText = NumFormat(obj.humidity, 2) + "%";
 
         let cell4 = row.insertCell(-1) as HTMLTableCellElement;
-        cell4.innerText = obj.temperature.toString() + "°C";
+        cell4.innerText = NumFormat(obj.temperature, 2) + "°C";
 
         let cell5 = row.insertCell(-1) as HTMLTableCellElement;
         cell5.innerText = Dates.formatDate(obj.timeOfEntry);
@@ -135,7 +147,7 @@ async function PostOne(): Promise<any>
     })
     .catch(function()
     {
-        alert("ERROR");
+
     });
 }
 
@@ -143,10 +155,21 @@ async function PostOne(): Promise<any>
 // HTTP Method: PUT
 async function PutOne(): Promise<any>
 {
-    await axios.put(baseURI + "/" + inputId.value)
+    await axios.put(baseURI + "/" + inputId.value,
+    {
+        id: inputId.value,
+        pressure: inputPressure.value,
+        humidity: inputHumidity.value,
+        temperature: inputTemperature.value
+    })
     .then(function()
     {
-
+        GetAll();
+        console.log("Test");
+    })
+    .catch(function(error)
+    {
+        console.log(error);
     });
 }
 
