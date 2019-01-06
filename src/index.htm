@@ -29,11 +29,10 @@
           <h1>3. Semester Exam (8/1/18)</h1>
         </div>
       </div>
-      <div class="row">
+      <div class="row mb-3">
           <div class="col" id="content">
-            <button id="GetAll" class="btn btn-primary btn-lg mb-3">Get All</button>
-            <button id="GetOne" class="btn btn-primary btn-lg mb-3">Get One</button>
-            <button id="DeleteOne" class="btn btn-primary btn-lg mb-3">Delete One</button>
+            <button id="GetAll" class="btn btn-primary btn-lg">Get All</button>
+            <button id="GetOne" class="btn btn-primary btn-lg">Get One</button>
           </div>
       </div>
       <div class="row mt-5">
@@ -52,6 +51,7 @@
                 <th class="col-2">Humidity</th>
                 <th class="col-2">Temperature</th>
                 <th class="col-4">Timestamp</th>
+                <th></th>
               </tr>
             </thead>
             <tbody id="tBodyContent">
@@ -63,12 +63,13 @@
                 <td><input id="InputId" class="form-control mb-3"></td>
                 <td><input id="InputId" class="form-control mb-3"></td>
                 <td><input id="InputId" class="form-control mb-3" value="DD/MM/YYYY HH:MM:SS" disabled></td>
+                <td></td>
               </tr>
             </tfoot>
           </table>
         </div>
       </div>
-      <div class="row mt-3">
+      <div class="row">
         <div class="col">
           <button id="PostOne" class="btn btn-success btn-lg">Post One</button>
         </div>
