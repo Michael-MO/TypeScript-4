@@ -26,7 +26,7 @@
     <div class="container">
       <div class="row mb-3">
         <div class="col">
-          <h1>Meassurements</h1>
+          <h1>3. Semester Exam (8/1/18)</h1>
         </div>
       </div>
       <div class="row">
@@ -34,22 +34,31 @@
             <button id="GetAll" class="btn btn-primary btn-lg mb-3">Get All</button>
             <button id="GetOne" class="btn btn-primary btn-lg mb-3">Get One</button>
             <button id="DeleteOne" class="btn btn-primary btn-lg mb-3">Delete One</button>
-            <input id="InputId" class="form-control form-control-lg mb-3">
-            <table class="table table-lg table-striped">
-              <thead>
-                <tr>
-                  <th class="col-2">ID</th>
-                  <th class="col-2">Pressure</th>
-                  <th class="col-2">Humidity</th>
-                  <th class="col-2">Temperature</th>
-                  <th class="col-4">Timestamp</th>
-                </tr>
-              </thead>
-              <tbody id="tBodyContent">
-              </tbody>
-            </table>
           </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col">
+          <input id="InputId" class="form-control form-control-lg mb-3">
         </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col">
+          <h2>Records</h2>
+          <table class="table table-lg table-striped">
+            <thead>
+              <tr>
+                <th class="col-2">ID</th>
+                <th class="col-2">Pressure</th>
+                <th class="col-2">Humidity</th>
+                <th class="col-2">Temperature</th>
+                <th class="col-4">Timestamp</th>
+              </tr>
+            </thead>
+            <tbody id="tBodyContent">
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </body>
   <script src="bundle.js"></script>
