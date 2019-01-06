@@ -33,7 +33,7 @@ export class Dates
 
     private static doTimezone(date: Date): void
     {
-        date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+        date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     }
 
     private static LeadingZero(unit: number): string
