@@ -27,17 +27,17 @@
       <div class="row mb-3">
         <div class="col">
           <h1>3. Semester Exam (8/1/18)</h1>
+          <small>By Michael Møller Olson</small>
         </div>
       </div>
-      <div class="row mb-3">
-          <div class="col" id="content">
-            <button id="GetAll" class="btn btn-primary btn-lg">Get All</button>
-            <button id="GetOne" class="btn btn-primary btn-lg">Get One</button>
-          </div>
-      </div>
       <div class="row mt-5">
-        <div class="col">
-          <input id="InputId" class="form-control form-control-lg mb-3">
+        <div class="col-6">
+          <div class="input-group">
+            <input id="InputId" class="form-control form-control-lg" aria-describedby="GetOne" placeholder="Filter by 'ID'">
+            <div class="input-group-append">
+                <button class="btn btn-secondary btn-lg" type="button" id="GetOne"><i class="fas fa-search"></i></button>
+            </div>
+          </div>
         </div>
       </div>
       <div class="row mt-5">
@@ -50,20 +50,18 @@
                 <th class="col-2">Pressure</th>
                 <th class="col-2">Humidity</th>
                 <th class="col-2">Temperature</th>
-                <th class="col-4">Timestamp</th>
-                <th></th>
+                <th class="col-4" colspan="2">Timestamp</th>
               </tr>
             </thead>
             <tbody id="tBodyContent">
             </tbody>
             <tfoot id="tFootContent">
               <tr>
-                <td><input id="InputId" class="form-control mb-3" value="0" disabled></td>
-                <td><input id="InputId" class="form-control mb-3"></td>
-                <td><input id="InputId" class="form-control mb-3"></td>
-                <td><input id="InputId" class="form-control mb-3"></td>
-                <td><input id="InputId" class="form-control mb-3" value="DD/MM/YYYY HH:MM:SS" disabled></td>
-                <td></td>
+                <td><input class="form-control" value="0" disabled></td>
+                <td><input id="PostPressure" class="form-control"></td>
+                <td><input id="PostHumidity" class="form-control"></td>
+                <td><input id="PostTemperature" class="form-control"></td>
+                <td colspan=2><input class="form-control" value="DD/MM/YYYY HH:MM:SS" disabled></td>
               </tr>
             </tfoot>
           </table>
