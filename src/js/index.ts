@@ -56,7 +56,7 @@ function HTMLTableDataRow(obj?: Meassurement): HTMLTableRowElement
         cell5.innerText = Dates.formatDate(obj.timeOfEntry);
         
         let deleteBtn = document.createElement("button") as HTMLButtonElement;
-        deleteBtn.setAttribute("class", "btn btn-danger");
+        deleteBtn.setAttribute("class", "btn btn-danger btn-block");
         deleteBtn.innerText = "Delete This";
         deleteBtn.addEventListener("click", function()
         {
@@ -154,7 +154,7 @@ async function PutOne(): Promise<any>
 async function DeleteOne(id: number): Promise<void>
 {
     await axios.delete(baseURI + "/" + id.toString())
-    .then(function(response)
+    .then(function()
     {
         GetAll();
     });
