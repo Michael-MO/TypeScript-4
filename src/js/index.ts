@@ -21,9 +21,6 @@ btnGetAll.addEventListener("click", GetAll);
 let btnGetOne = document.getElementById("GetOne") as HTMLButtonElement;
 btnGetOne.addEventListener("click", GetOne);
 
-let btnDeleteOne = document.getElementById("DeleteOne") as HTMLButtonElement;
-btnDeleteOne.addEventListener("click", DeleteOne);
-
 let tableBody = document.getElementById("tBodyContent") as HTMLTableElement;
 
 function ClearTable(): void
@@ -38,25 +35,36 @@ function HTMLTableDataRow(obj?: Meassurement): HTMLTableRowElement
 
     if(obj)
     {
-        let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        let cell = row.insertCell(-1) as HTMLTableCellElement;
         cell.innerText = obj.id.toString();
 
-        let cell2 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        let cell2 = row.insertCell(-1) as HTMLTableCellElement;
         cell2.innerText = obj.pressure.toString() + " bar";
 
-        let cell3 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        let cell3 = row.insertCell(-1) as HTMLTableCellElement;
         cell3.innerText = obj.humidity.toString() + "%";
 
-        let cell4 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        let cell4 = row.insertCell(-1) as HTMLTableCellElement;
         cell4.innerText = obj.temperature.toString() + "°C";
 
-        let cell5 = row.appendChild(document.createElement("td") as HTMLTableCellElement);
+        let cell5 = row.insertCell(-1) as HTMLTableCellElement;
         cell5.innerText = Dates.formatDate(obj.timeOfEntry);
+        
+        let deleteBtn = document.createElement("button") as HTMLButtonElement;
+        deleteBtn.setAttribute("class", "btn btn-danger");
+        deleteBtn.innerText = "Delete This";
+        deleteBtn.addEventListener("click", function()
+        {
+            DeleteOne(obj.id);
+        });
+
+        let cell6 = row.insertCell(-1) as HTMLTableCellElement;
+        cell6.appendChild(deleteBtn);
     }
     else
     {
         let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
-        cell.setAttribute("colspan", "5");
+        cell.setAttribute("colspan", "6");
         cell.innerText = "No records found.";
     }
 
@@ -129,9 +137,9 @@ async function PutOne(): Promise<any>
 }
 
 // HTTP Method: DELETE
-async function DeleteOne(): Promise<any>
+async function DeleteOne(id: number): Promise<void>
 {
-    await axios.delete(baseURI + "/" + inputId.value)
+    await axios.delete(baseURI + "/" + id.toString())
     .then(function(response)
     {
         GetAll();
