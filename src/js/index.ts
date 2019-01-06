@@ -36,7 +36,7 @@ function HTMLTableDataRow(obj?: Meassurement): HTMLTableRowElement
 {
     let row = document.createElement("tr") as HTMLTableRowElement;
 
-    if(obj != null)
+    if(obj)
     {
         let cell = row.appendChild(document.createElement("td") as HTMLTableCellElement);
         cell.innerText = obj.id.toString();
