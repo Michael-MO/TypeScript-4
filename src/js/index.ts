@@ -14,12 +14,17 @@ interface Meassurement
 let baseURI: string = "https://mmo-restservicetest4.azurewebsites.net/api/meassurements";
 
 let inputId = document.getElementById("InputId") as HTMLInputElement;
+inputId.addEventListener("submit", GetOne);
 
-let btnGetAll = document.getElementById("GetAll") as HTMLButtonElement;
-btnGetAll.addEventListener("click", GetAll);
+let inputPressure = document.getElementById("PostPressure") as HTMLInputElement;
+let inputHumidity = document.getElementById("PostHumidity") as HTMLInputElement;
+let inputTemperature = document.getElementById("PostTemperature") as HTMLInputElement;
 
 let btnGetOne = document.getElementById("GetOne") as HTMLButtonElement;
 btnGetOne.addEventListener("click", GetOne);
+
+let btnPostOne = document.getElementById("PostOne") as HTMLButtonElement;
+btnPostOne.addEventListener("click", PostOne);
 
 let tableBody = document.getElementById("tBodyContent") as HTMLTableElement;
 
@@ -105,7 +110,7 @@ async function GetOne(): Promise<any>
         }
         else
         {
-            tableBody.appendChild(HTMLTableDataRow());
+            GetAll();
         }
     })
     .catch(function()
@@ -118,10 +123,19 @@ async function GetOne(): Promise<any>
 // HTTP Method: POST
 async function PostOne(): Promise<any>
 {
-    await axios.post(baseURI)
+    await axios.post(baseURI,
+    {
+        pressure: inputPressure.value,
+        humidity: inputHumidity.value,
+        temperature: inputTemperature.value
+    })
     .then(function()
     {
         GetAll();
+    })
+    .catch(function()
+    {
+        alert("ERROR");
     });
 }
 
@@ -146,4 +160,5 @@ async function DeleteOne(id: number): Promise<void>
     });
 }
 
+// Get all records on page load
 GetAll();
