@@ -1,7 +1,5 @@
 export class Dates
-{
-    //constructor() {}
-    
+{    
     public static formatDate(date: Date): string
     {
         let d = new Date(date) as Date;
