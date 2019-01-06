@@ -137,3 +137,5 @@ async function DeleteOne(): Promise<any>
         GetAll();
     });
 }
+
+GetAll();
