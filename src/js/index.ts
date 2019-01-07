@@ -14,7 +14,13 @@ interface Meassurement
 const baseURI: string = "https://mmo-restservicetest4.azurewebsites.net/api/meassurements";
 
 let inputId = document.getElementById("InputId") as HTMLInputElement;
-inputId.addEventListener("submit", GetOne);
+inputId.addEventListener('keyup', function(key)
+{
+    if(key.keyCode === 13)
+    {
+        GetOne();
+    }
+});
 
 let inputPressure = document.getElementById("PostPressure") as HTMLInputElement;
 let inputHumidity = document.getElementById("PostHumidity") as HTMLInputElement;
@@ -144,10 +150,6 @@ async function PostOne(): Promise<any>
     .then(function()
     {
         GetAll();
-    })
-    .catch(function()
-    {
-
     });
 }
 
@@ -157,7 +159,6 @@ async function PutOne(): Promise<any>
 {
     await axios.put(baseURI + "/" + inputId.value,
     {
-        id: inputId.value,
         pressure: inputPressure.value,
         humidity: inputHumidity.value,
         temperature: inputTemperature.value
@@ -165,11 +166,6 @@ async function PutOne(): Promise<any>
     .then(function()
     {
         GetAll();
-        console.log("Test");
-    })
-    .catch(function(error)
-    {
-        console.log(error);
     });
 }
 
